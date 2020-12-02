@@ -46,6 +46,12 @@ export const Form = styled.form`
     border-radius: 4px;
     font-size: 16px;
   }
+
+  @media(max-width: 640px) {
+    div {
+      flex-grow: 1;
+    }
+  }
 `;
 
 export const SearchButton = styled.button.attrs({
