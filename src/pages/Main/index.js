@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithubAlt, FaSearch, FaSpinner } from 'react-icons/fa';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
-import { Container, Form, SearchButton, List, PageNav } from './styles';
+import { Container, Form, SearchButton, PageNav } from './styles';
 import api from '../../services/api';
 import useDebounce from '../../helpers/use-debounce'
+import { List } from '../../components/List';
 
 export default function Main() {
   const [ loading, setLoading ] = useState(false);
@@ -43,7 +44,7 @@ export default function Main() {
   }
 
   const handleInputChange = e => {
-      setSearch(e.target.value);
+    setSearch(e.target.value);
   }
 
   const handlePage = action => {
