@@ -109,8 +109,8 @@ export default function Main() {
         {repositories.map(repo => (
         <li key={repo.full_name}>
             <div>
-            <Link to={`/repository/${encodeURIComponent(repo.full_name)}`}>
-                <img src={repo.owner.avatar_url} alt={repo.owner.name} />
+            <Link to={`/repository/${encodeURIComponent(repo.owner.login)}/${encodeURIComponent(repo.name)}`}>
+                <img src={repo.owner.avatar_url} alt={repo.owner.login} />
                 <span>{repo.full_name}</span>
             </Link>
             </div>
