@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGithubAlt, FaSearch } from 'react-icons/fa';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
-import { Container, Form, PageNav, SearchButton } from './styles';
+import { Form, PageNav, SearchButton } from './styles';
 import api from '../../services/api';
 import { List } from '../../components/List';
+import { Container } from '../../components/Container';
 import { useFormik } from 'formik';
 
 export default function Main() {
