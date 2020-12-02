@@ -23,7 +23,7 @@ export default function Main() {
                 per_page: 10,
                 page
             }
-        })
+        });
     }
 
     const listRepositories = async () =>  {
@@ -44,6 +44,7 @@ export default function Main() {
   }
 
   const handleInputChange = e => {
+    setPage(1);
     setSearch(e.target.value);
   }
 
