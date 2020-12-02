@@ -1,79 +1,104 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGithubAlt, FaSearch, FaSpinner } from 'react-icons/fa';
+import { FaGithubAlt, FaSearch } from 'react-icons/fa';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
-import { Container, Form, SearchButton, PageNav } from './styles';
+import { Container, Form, PageNav, SearchButton } from './styles';
 import api from '../../services/api';
-import useDebounce from '../../helpers/use-debounce'
 import { List } from '../../components/List';
+import { useFormik } from 'formik';
 
 export default function Main() {
-  const [ loading, setLoading ] = useState(false);
-  const [ search, setSearch ] = useState('');
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      language: '',
+      user: '',
+      org: '',
+    },
+    onSubmit: values => {
+      setPage(1);
+      makeRequest(values, 1);
+    },
+  });
+
   const [ page, setPage ] = useState(1);
   const [ repositories, setRepositories ] = useState([]);
-  const debouncedSearch = useDebounce(search, 500);
 
-  useEffect(() => {
+  const makeUrl = (values, page) => {
+    const endPoint = '/search/repositories';
+    const searchTerm = `?q=${values.name}`
+    const query = Object.keys(values)
+      .filter(value => value !== 'name')
+      .reduce((query, value) => `${query}${values[value] ? `+${value}:${values[value]}` : ''}`, '')
 
-    const getResponse = () => {
-        return api.get('/search/repositories', {
-            params: {
-                q: debouncedSearch,
-                per_page: 10,
-                page
-            }
-        });
-    }
+    const queryPage = `&per_page=10&page=${page}`
 
-    const listRepositories = async () =>  {
-        if (!debouncedSearch) return;
-
-        setLoading(true);
-        const response = await getResponse();
-        setRepositories(response.data.items);
-        setLoading(false);
-    }
-
-    listRepositories();
-  }, [debouncedSearch, page]);
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    setPage(1);
-  }
-
-  const handleInputChange = e => {
-    setPage(1);
-    setSearch(e.target.value);
+    return endPoint + searchTerm + query + queryPage;
   }
 
   const handlePage = action => {
     const newPage = action === 'back' ? page - 1 : page + 1;
     setPage(newPage);
+    makeRequest(formik.values, newPage);
   };
+
+  const makeRequest = async (values, page) => {
+    const urlApi = makeUrl(values, page);
+    const response = await api.get(urlApi);
+    setRepositories(response.data.items);
+  }
 
   return (
     <Container>
       <h1>
         <FaGithubAlt />
-        Repositórios do Github
+        Busca de Repositórios do Github
       </h1>
 
-      <Form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Buscar repositórios" 
-          value={search}
-          onChange={handleInputChange}
-        />
+      <Form onSubmit={formik.handleSubmit}>
+        <div>
+          <label htmlFor="name">Nome do Repositório</label>
+          <input 
+            id="name"
+            type="text" 
+            value={formik.values.name}
+            onChange={formik.handleChange}
+          />
+        </div>
 
-        <SearchButton>
-          {loading ? (
-            <FaSpinner color="#FFF" size={14} />
-          ) : (
+        <div>
+          <label htmlFor="language">Linguagem</label>
+          <input 
+            id="language"
+            type="text" 
+            value={formik.values.language}
+            onChange={formik.handleChange}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="user">Usuário</label>
+          <input 
+            id="user"
+            type="text" 
+            value={formik.values.user}
+            onChange={formik.handleChange}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="org">Organização</label>
+          <input 
+            id="org"
+            type="text" 
+            value={formik.values.org}
+            onChange={formik.handleChange}
+          />
+        </div>
+
+        <SearchButton>      
             <FaSearch color="#FFF" size={14} />
-          )}
         </SearchButton>
       </Form>
 
