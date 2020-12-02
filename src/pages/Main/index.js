@@ -58,48 +58,51 @@ export default function Main() {
 
       <Form onSubmit={formik.handleSubmit}>
         <div>
-          <label htmlFor="name">Nome do Repositório</label>
-          <input 
-            id="name"
-            type="text" 
-            value={formik.values.name}
-            onChange={formik.handleChange}
-          />
-        </div>
+            <div>
+            <label htmlFor="name">Nome do Repositório</label>
+            <input 
+                id="name"
+                type="text" 
+                value={formik.values.name}
+                onChange={formik.handleChange}
+            />
+            </div>
 
-        <div>
-          <label htmlFor="language">Linguagem</label>
-          <input 
-            id="language"
-            type="text" 
-            value={formik.values.language}
-            onChange={formik.handleChange}
-          />
-        </div>
+            <div>
+            <label htmlFor="language">Linguagem</label>
+            <input 
+                id="language"
+                type="text" 
+                value={formik.values.language}
+                onChange={formik.handleChange}
+            />
+            </div>
 
-        <div>
-          <label htmlFor="user">Usuário</label>
-          <input 
-            id="user"
-            type="text" 
-            value={formik.values.user}
-            onChange={formik.handleChange}
-          />
-        </div>
+            <div>
+            <label htmlFor="user">Usuário</label>
+            <input 
+                id="user"
+                type="text" 
+                value={formik.values.user}
+                onChange={formik.handleChange}
+            />
+            </div>
 
-        <div>
-          <label htmlFor="org">Organização</label>
-          <input 
-            id="org"
-            type="text" 
-            value={formik.values.org}
-            onChange={formik.handleChange}
-          />
+            <div>
+            <label htmlFor="org">Organização</label>
+            <input 
+                id="org"
+                type="text" 
+                value={formik.values.org}
+                onChange={formik.handleChange}
+            />
+            </div>
         </div>
-
-        <SearchButton>      
-            <FaSearch color="#FFF" size={14} />
-        </SearchButton>
+        <div className="form-submit">
+            <SearchButton>      
+                <FaSearch color="#FFF" size={14} />
+            </SearchButton>
+        </div>
       </Form>
 
       <List>

@@ -21,16 +21,23 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
 
   div {
+    margin-top: 10px;
     display: flex;
-    flex-direction: column;
-    flex-shrink: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+  }
+
+  .form-submit {
+    display: flex;
+    justify-content: flex-end;
   }
 
   input {
@@ -44,6 +51,7 @@ export const Form = styled.form`
 export const SearchButton = styled.button.attrs({
   type: 'submit',
 })`
+  height: 40px;
   background: #3c3c4c;
   border: 0;
   padding: 0 15px;
