@@ -37,7 +37,7 @@ export const Form = styled.form`
 export const SearchButton = styled.button.attrs({
   type: 'submit',
 })`
-  background: #7159c1;
+  background: #3c3c4c;
   border: 0;
   padding: 0 15px;
   margin-left: 10px;
