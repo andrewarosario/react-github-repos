@@ -36,8 +36,8 @@ export default function Main() {
     const endPoint = '/search/repositories';
     const searchTerm = `?q=${values.name}`
     const query = Object.keys(values)
-      .filter(value => value !== 'name')
-      .reduce((query, value) => `${query}${values[value] ? `+${value}:${values[value]}` : ''}`, '')
+      .filter(key => key !== 'name')
+      .reduce((query, key) => `${query}${values[key] ? `+${key}:${values[key]}` : ''}`, '')
 
     const queryPage = `&per_page=10&page=${page}`
     const querySort = sort && `&sort=${sort}`
