@@ -5,10 +5,10 @@ import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import { Form, PageNav, SearchButton } from './styles';
 import api from '../../services/api';
 import { List } from '../../components/List';
-import { Container } from '../../components/Container';
 import { Loading } from '../../components/Loading';
 import { useFormik } from 'formik';
 import InputForm from '../../components/InputForm';
+import { Container } from '../../components/Container/styles';
 
 export default function Main() {
 

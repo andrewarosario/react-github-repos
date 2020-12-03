@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Owner } from './styles';
-import { Container } from '../../components/Container';
+import { Container } from '../../components/Container/styles';
 import { Loading } from '../../components/Loading';
 import { FaStar, FaLink } from 'react-icons/fa';
 
