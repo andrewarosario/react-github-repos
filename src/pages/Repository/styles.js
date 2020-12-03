@@ -26,4 +26,7 @@ export const Owner = styled.header`
     text-align: center;
     max-width: 400px;
   }
+  div {
+    margin-top: 5px;
+  }
 `;
