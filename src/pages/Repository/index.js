@@ -3,7 +3,7 @@ import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Owner } from './styles';
 import { Container } from '../../components/Container';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaLink } from 'react-icons/fa';
 
 export default function Repository(props) {
 
@@ -37,6 +37,10 @@ export default function Repository(props) {
         <div>
           <FaStar /> <span>{repository.stargazers_count}</span>
         </div>
+        <a href={repository.html_url} target="_blank" rel="noreferrer">
+          <FaLink />
+          Acessar Repositório pelo Github
+        </a>
       </Owner>
     </Container>
   );

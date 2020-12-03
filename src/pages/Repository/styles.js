@@ -5,8 +5,8 @@ export const Owner = styled.header`
   flex-direction: column;
   align-items: center;
   a {
-    color: #7159c1;
-    font-size: 16px;
+    margin-top: 5px;
+    font-size: 14px;
     text-decoration: none;
   }
   img {
