@@ -20,7 +20,7 @@ export default function Repository(props) {
 
     makeRequest();
     
-  }, [])
+  })
 
   if (!repository) {
     return (
