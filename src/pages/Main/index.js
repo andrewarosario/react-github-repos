@@ -19,14 +19,15 @@ export default function Main() {
     },
     onSubmit: values => {
       setPage(1);
-      makeRequest(values, 1);
+      makeRequest(values, 1, sort);
     },
   });
 
   const [ page, setPage ] = useState(1);
+  const [ sort, setSort ] = useState('');
   const [ repositories, setRepositories ] = useState([]);
 
-  const makeUrl = (values, page) => {
+  const makeUrl = (values, page, sort) => {
     const endPoint = '/search/repositories';
     const searchTerm = `?q=${values.name}`
     const query = Object.keys(values)
@@ -34,18 +35,25 @@ export default function Main() {
       .reduce((query, value) => `${query}${values[value] ? `+${value}:${values[value]}` : ''}`, '')
 
     const queryPage = `&per_page=10&page=${page}`
+    const querySort = sort && `&sort=${sort}`
 
-    return endPoint + searchTerm + query + queryPage;
+    return endPoint + searchTerm + query + queryPage + querySort;
   }
 
   const handlePage = action => {
     const newPage = action === 'back' ? page - 1 : page + 1;
     setPage(newPage);
-    makeRequest(formik.values, newPage);
+    makeRequest(formik.values, newPage, sort);
   };
 
-  const makeRequest = async (values, page) => {
-    const urlApi = makeUrl(values, page);
+  const handleSort = e => {
+    const newSort = e.target.value;
+    setSort(newSort);
+    makeRequest(formik.values, page, newSort);
+  }
+
+  const makeRequest = async (values, page, sort) => {
+    const urlApi = makeUrl(values, page, sort);
     const response = await api.get(urlApi);
     setRepositories(response.data.items);
   }
@@ -100,6 +108,12 @@ export default function Main() {
             </div>
         </div>
         <div className="form-submit">
+            <select value={sort} onChange={handleSort}>
+              <option value="">Relevância</option>
+              <option value="stars">Quantidade de Estrelas</option>
+              <option value="forks">Quantidade de Forks</option>
+              <option value="updated">Última Atualização</option>
+            </select>
             <SearchButton>      
                 <FaSearch color="#FFF" size={14} />
             </SearchButton>

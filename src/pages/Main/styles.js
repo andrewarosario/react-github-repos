@@ -17,7 +17,7 @@ export const Form = styled.form`
 
   .form-submit {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   input {
