@@ -3,6 +3,7 @@ import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import { Owner } from './styles';
 import { Container } from '../../components/Container';
+import { Loading } from '../../components/Loading';
 import { FaStar, FaLink } from 'react-icons/fa';
 
 export default function Repository(props) {
@@ -21,7 +22,11 @@ export default function Repository(props) {
   }, [])
 
   if (!repository) {
-    return <Container></Container>
+    return (
+      <Container>
+        <Loading>Carregando Repositório</Loading>
+      </Container>
+    );
   }
 
   return (

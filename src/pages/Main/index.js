@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGithubAlt, FaSearch } from 'react-icons/fa';
+import { FaGithubAlt, FaSearch, FaSpinner } from 'react-icons/fa';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import { Form, PageNav, SearchButton } from './styles';
 import api from '../../services/api';
 import { List } from '../../components/List';
 import { Container } from '../../components/Container';
+import { Loading } from '../../components/Loading';
 import { useFormik } from 'formik';
 
 export default function Main() {
@@ -26,6 +27,7 @@ export default function Main() {
   const [ page, setPage ] = useState(1);
   const [ sort, setSort ] = useState('');
   const [ repositories, setRepositories ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
 
   const makeUrl = (values, page, sort) => {
     const endPoint = '/search/repositories';
@@ -53,9 +55,11 @@ export default function Main() {
   }
 
   const makeRequest = async (values, page, sort) => {
+    setLoading(true);
     const urlApi = makeUrl(values, page, sort);
     const response = await api.get(urlApi);
     setRepositories(response.data.items);
+    setLoading(false);
   }
 
   return (
@@ -115,12 +119,19 @@ export default function Main() {
               <option value="updated">Última Atualização</option>
             </select>
             <SearchButton>      
-                <FaSearch color="#FFF" size={14} />
+            {loading ? (
+              <FaSpinner color="#FFF" size={14} />
+            ) : (
+              <FaSearch color="#FFF" size={14} />
+            )}
             </SearchButton>
         </div>
       </Form>
 
-      <List>
+      {loading ? (
+        <Loading>Buscando Repositórios...</Loading>
+      ) : (
+        <List>
         {repositories.map(repo => (
         <li key={repo.full_name}>
             <div>
@@ -147,7 +158,8 @@ export default function Main() {
             </button>
           </PageNav>
         }
-      </List>
+      </List>      
+      )}
       
     </Container>
   );
