@@ -9,6 +9,8 @@ import { Loading } from '../../components/Loading';
 import { useFormik } from 'formik';
 import InputForm from '../../components/InputForm';
 import { Container } from '../../components/Container';
+import SelectForm from '../../components/SelectForm';
+import { SORT_ITEMS } from './data';
 
 export default function Main() {
 
@@ -98,18 +100,18 @@ export default function Main() {
             </InputForm>
         </div>
         <div className="form-submit">
-            <select value={sort} onChange={handleSort}>
-              <option value="">Relevância</option>
-              <option value="stars">Quantidade de Estrelas</option>
-              <option value="forks">Quantidade de Forks</option>
-              <option value="updated">Última Atualização</option>
-            </select>
+            <SelectForm
+              items={SORT_ITEMS}
+              valueState={sort}
+              onChangeState={handleSort}>
+            </SelectForm>
+
             <SearchButton>      
-            {loading ? (
-              <FaSpinner color="#FFF" size={14} />
-            ) : (
-              <FaSearch color="#FFF" size={14} />
-            )}
+              {loading ? (
+                <FaSpinner color="#FFF" size={14} />
+              ) : (
+                <FaSearch color="#FFF" size={14} />
+              )}
             </SearchButton>
         </div>
       </Form>
