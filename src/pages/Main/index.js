@@ -8,7 +8,7 @@ import { List } from '../../components/List';
 import { Loading } from '../../components/Loading';
 import { useFormik } from 'formik';
 import InputForm from '../../components/InputForm';
-import { Container } from '../../components/Container/styles';
+import { Container } from '../../components/Container';
 
 export default function Main() {
 
@@ -71,7 +71,7 @@ export default function Main() {
       </h1>
 
       <Form onSubmit={formik.handleSubmit}>
-        <div>
+        <div className="form-inputs">
             <InputForm 
               name={'name'} 
               label={'Nome do Repositório'} 

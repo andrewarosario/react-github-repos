@@ -2,34 +2,24 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
 
-  div {
+  .form-inputs {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
-
-      div {
-        display: flex;
-        flex-direction: column;
-      }
   }
 
   .form-submit {
     display: flex;
     justify-content: space-between;
-  }
-
-  input {
-    border: 1px solid #eee;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-size: 16px;
+    margin-top: 10px;
   }
 
   @media(max-width: 640px) {
     div {
       flex-grow: 1;
+      margin-bottom: 10px;
     }
   }
 `;

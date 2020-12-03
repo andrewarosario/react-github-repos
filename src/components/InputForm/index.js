@@ -1,9 +1,10 @@
 import React from "react";
+import { Input } from "./styles";
 
 export default function InputForm(props) {
     
     return (
-        <div>
+        <Input>
             <label htmlFor={props.name}>{props.label}</label>
             <input 
                 id={props.name}
@@ -11,6 +12,6 @@ export default function InputForm(props) {
                 value={props.valueState}
                 onChange={props.onChangeState}
             />
-        </div>
+        </Input>
     );
 };
