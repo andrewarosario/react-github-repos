@@ -5,6 +5,7 @@ import { Owner } from './styles';
 import { Container } from '../../components/Container';
 import { Loading } from '../../components/Loading';
 import { FaStar, FaLink } from 'react-icons/fa';
+import { GoArrowLeft } from 'react-icons/go';
 
 export default function Repository(props) {
 
@@ -32,7 +33,9 @@ export default function Repository(props) {
   return (
     <Container>
       <Owner>
-        <Link to="/">Voltar</Link>
+        <Link to="/">
+            <GoArrowLeft />Voltar
+        </Link>
         <img src={repository.owner.avatar_url} alt={repository.owner.login} />
         <h1>{repository.name}</h1>
         <p>{repository.description}</p>

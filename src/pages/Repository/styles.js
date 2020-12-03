@@ -17,6 +17,7 @@ export const Owner = styled.header`
   h1 {
     font-size: 24px;
     margin-top: 10px;
+    text-align: center;
   }
   p {
     margin-top: 5px;
