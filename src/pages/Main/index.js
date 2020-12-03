@@ -8,6 +8,7 @@ import { List } from '../../components/List';
 import { Container } from '../../components/Container';
 import { Loading } from '../../components/Loading';
 import { useFormik } from 'formik';
+import InputForm from '../../components/InputForm';
 
 export default function Main() {
 
@@ -71,45 +72,30 @@ export default function Main() {
 
       <Form onSubmit={formik.handleSubmit}>
         <div>
-            <div>
-            <label htmlFor="name">Nome do Repositório</label>
-            <input 
-                id="name"
-                type="text" 
-                value={formik.values.name}
-                onChange={formik.handleChange}
-            />
-            </div>
-
-            <div>
-            <label htmlFor="language">Linguagem</label>
-            <input 
-                id="language"
-                type="text" 
-                value={formik.values.language}
-                onChange={formik.handleChange}
-            />
-            </div>
-
-            <div>
-            <label htmlFor="user">Usuário</label>
-            <input 
-                id="user"
-                type="text" 
-                value={formik.values.user}
-                onChange={formik.handleChange}
-            />
-            </div>
-
-            <div>
-            <label htmlFor="org">Organização</label>
-            <input 
-                id="org"
-                type="text" 
-                value={formik.values.org}
-                onChange={formik.handleChange}
-            />
-            </div>
+            <InputForm 
+              name={'name'} 
+              label={'Nome do Repositório'} 
+              valueState={formik.values.name} 
+              onChangeState={formik.handleChange}>
+            </InputForm>
+            <InputForm 
+              name={'language'} 
+              label={'Linguagem'} 
+              valueState={formik.values.language} 
+              onChangeState={formik.handleChange}>
+            </InputForm>
+            <InputForm 
+              name={'user'} 
+              label={'Usuário'} 
+              valueState={formik.values.user} 
+              onChangeState={formik.handleChange}>
+            </InputForm>
+            <InputForm 
+              name={'org'} 
+              label={'Organização'} 
+              valueState={formik.values.org} 
+              onChangeState={formik.handleChange}>
+            </InputForm>
         </div>
         <div className="form-submit">
             <select value={sort} onChange={handleSort}>
